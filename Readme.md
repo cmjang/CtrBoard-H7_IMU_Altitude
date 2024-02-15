@@ -10,11 +10,17 @@
 
 开源Mahony算法-包含四元数转欧拉角的部分为1.33us,不加四元数转欧拉角只需要520ns
 
-![mahony](img/mahony.png)
+![mahony](img/mahony.png #pic_center)
 
 开源EKF姿态解算算法-包含四元数转欧拉角的部分，总共为29.4us.
 
-![ekf](img/ekf.png)
+![ekf](img/ekf.png #pic_center)
+
+### 开发板购买链接
+
+https://item.taobao.com/item.htm?ft=t&id=767305853444
+
+![buy](img/buy.png #pic_center)
 
 ## 注意事项：
 
