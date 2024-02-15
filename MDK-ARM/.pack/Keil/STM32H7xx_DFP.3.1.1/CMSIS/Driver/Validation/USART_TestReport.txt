@@ -1,0 +1,66 @@
+CMSIS-Driver_Validation v3.0.0 CMSIS-Driver USART Test Report   Mar 17 2023   14:44:30 
+
+Test Mode:          USART Server
+Default settings:
+ - Mode:            Asynchronous
+ - Data bits:       8
+ - Parity:          None
+ - Stop bits:       1
+ - Flow control:    None
+ - Clock polarity:  CPOL0
+ - Clock phase:     CPHA0
+ - Bus speed:       115200 bauds
+ - Number of Items: 512
+
+TEST 01: USART_GetVersion                 
+  DV_USART.c (1926): [INFO] Driver API version 2.4, Driver version 2.3
+                                          PASSED
+TEST 02: USART_GetCapabilities            PASSED
+TEST 03: USART_Initialize_Uninitialize    PASSED
+TEST 04: USART_PowerControl               
+  DV_USART.c (2237): [WARNING] PowerControl (ARM_POWER_LOW) is not supported
+                                          PASSED
+TEST 05: USART_Mode_Asynchronous          PASSED
+TEST 06: USART_Mode_Synchronous_Master    NOT EXECUTED
+TEST 07: USART_Mode_Synchronous_Slave     NOT EXECUTED
+TEST 08: USART_Mode_Single_Wire           NOT EXECUTED
+TEST 09: USART_Mode_IrDA                  NOT EXECUTED
+TEST 10: USART_Data_Bits_5                NOT EXECUTED
+TEST 11: USART_Data_Bits_6                NOT EXECUTED
+TEST 12: USART_Data_Bits_7                NOT EXECUTED
+TEST 13: USART_Data_Bits_8                PASSED
+TEST 14: USART_Data_Bits_9                PASSED
+TEST 15: USART_Parity_None                PASSED
+TEST 16: USART_Parity_Even                PASSED
+TEST 17: USART_Parity_Odd                 PASSED
+TEST 18: USART_Stop_Bits_1                PASSED
+TEST 19: USART_Stop_Bits_2                PASSED
+TEST 20: USART_Stop_Bits_1_5              PASSED
+TEST 21: USART_Stop_Bits_0_5              PASSED
+TEST 22: USART_Flow_Control_None          PASSED
+TEST 23: USART_Flow_Control_RTS           PASSED
+TEST 24: USART_Flow_Control_CTS           PASSED
+TEST 25: USART_Flow_Control_RTS_CTS       PASSED
+TEST 26: USART_Baudrate_Min               PASSED
+TEST 27: USART_Baudrate_Max               PASSED
+TEST 28: USART_Number_Of_Items            PASSED
+TEST 29: USART_GetTxCount                 PASSED
+TEST 30: USART_GetRxCount                 PASSED
+TEST 31: USART_GetTxRxCount               NOT EXECUTED
+TEST 32: USART_AbortSend                  PASSED
+TEST 33: USART_AbortReceive               PASSED
+TEST 34: USART_AbortTransfer              NOT EXECUTED
+TEST 35: USART_TxBreak                    NOT EXECUTED
+TEST 36: USART_Tx_Underflow               NOT EXECUTED
+TEST 37: USART_Rx_Overflow                NOT EXECUTED
+TEST 38: USART_Rx_Timeout                 NOT EXECUTED
+TEST 39: USART_Rx_Break                   NOT EXECUTED
+TEST 40: USART_Rx_Framing_Error           PASSED
+TEST 41: USART_Rx_Parity_Error            PASSED
+TEST 42: USART_Event_CTS                  NOT EXECUTED
+TEST 43: USART_Event_DSR                  NOT EXECUTED
+TEST 44: USART_Event_DCD                  NOT EXECUTED
+TEST 45: USART_Event_RI                   NOT EXECUTED
+
+Test Summary: 45 Tests, 27 Passed, 0 Failed.
+Test Result: PASSED

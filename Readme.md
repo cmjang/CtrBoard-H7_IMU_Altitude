@@ -2,11 +2,21 @@
 
 此惯导姿态解算算法移植于：[WangHongxi2001/RoboMaster-C-Board-INS-Example (github.com)](https://github.com/WangHongxi2001/RoboMaster-C-Board-INS-Example)
 
-具体原理请看上面链接。
+具体原理请看上面链接，同时还有开源的Mahony算法作为对比测试,开启了H7的cache作为优化，同时大量使用arm的dsp库进行优化。
 
 主要控制在App/imu_temp_ctrl.c。
 
-请注意：
+## 实际测试
+
+开源Mahony算法-包含四元数转欧拉角的部分为1.33us,不加四元数转欧拉角只需要520ns
+
+![mahony](img/mahony.png)
+
+开源EKF姿态解算算法-包含四元数转欧拉角的部分，总共为29.4us.
+
+![ekf](img/ekf.png)
+
+## 注意事项：
 
 1.上电后先进行恒温控制（温度控制我简单的调了一下PID，具体可以打开DEBUG进行设定，不同的电压PID可能稍有差别，需要对PID进行调整），当温度达到设定温度（40°），进行一个计数，当计数值达到阈值（目的是确保温度已经到40度附近）才进行到第二个状态
 

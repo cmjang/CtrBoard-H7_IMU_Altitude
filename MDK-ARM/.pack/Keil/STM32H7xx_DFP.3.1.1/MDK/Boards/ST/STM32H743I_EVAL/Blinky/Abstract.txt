@@ -1,0 +1,22 @@
+The 'Blinky' project is a simple CMSIS RTOS2 based example for
+ST 'STM32H743XI microcontroller using ST 'STM32H743I-EVAL' Board.
+Compliant to Cortex Microcontroller Software Interface Standard (CMSIS).
+
+Example functionality:
+ - Clock Settings:
+   - XTAL    =            25.00 MHz
+   - SYSCLK  =           400.00 MHz
+
+ - LED  LD1 is blinking as running light with fixed speed 500 ms
+ - BUTTON Tamper is used for stop/start blinking LED
+
+The Blinky program is available in different targets:
+ - Debug:
+   - Compiler:                  ARM Compiler optimization Level 1
+   - Compiler:Event Recorder:   Enabled
+   - CMSIS:RTOS2:Keil RTX5:     Source
+
+ - Release:
+   - Compiler:                  ARM Compiler optimization Level 3
+   - Compiler:Event Recorder:   Disabled
+   - CMSIS:RTOS2:Keil RTX5:     Library

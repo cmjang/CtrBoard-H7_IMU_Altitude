@@ -1,0 +1,31 @@
+This program is a BSD_Client example running on Network Dual Stack.
+It is used to send commands to a BSD_Server or LEDSwitch server
+connected on the same LAN.
+
+In order to run this example, you need to use auto-assigned IPv6 address
+or set IPv4 address to match your local area network.
+
+To test this example, you need also a server application to connect to.
+Download and run a BSD_Server or LEDSwitch server on a different evaluation
+board connected to the same LAN. When BSD_Client is running, LED diodes on
+both evaluation boards should light in sync.
+
+NOTE: IP address and MAC address of this example must be set different
+      from IP and MAC addresses on BSD_Server.
+
+The BSD_Client program is a standalone application preconfigured for
+STM32H743I-EVAL Evaluation Board.
+
+The BSD_Client example is available in different targets:
+
+ - Debug:
+   - Compiler:                  ARM Compiler optimization Level 1
+   - Compiler:Event Recorder:   Enabled
+   - CMSIS:RTOS2:Keil RTX5:     Source
+   - Network:CORE:              IPv4/IPv6 Debug
+
+ - Release:
+   - Compiler:                  ARM Compiler optimization Level 3
+   - Compiler:Event Recorder:   Disabled
+   - CMSIS:RTOS2:Keil RTX5:     Library
+   - Network:CORE:              IPv4/IPv6 Release

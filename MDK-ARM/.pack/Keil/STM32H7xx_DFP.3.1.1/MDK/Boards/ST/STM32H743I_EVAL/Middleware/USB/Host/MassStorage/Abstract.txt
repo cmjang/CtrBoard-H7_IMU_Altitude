@@ -1,0 +1,33 @@
+This is an USB Host Mass Storage and File System example.
+
+After the USB Flash memory stick is connected it creates/overwrites 
+a file with name "Test.txt" and content "USB Host Mass Storage!".
+
+Board:                  ST 'STM32H743I-EVAL'
+Microcontroller:        ST 'STM32H743XIH6'
+Clock Settings:         XTAL        =  25 MHz
+                        CPUCLK      = 400 MHz
+                        USB HS1 CLK =  60 MHz (from external ULPI PHY)
+                        USB HS2 CLK =  48 MHz
+USB:                    OTG_HS1 high-speed (connector CN14)
+                        OTG_HS2 full-speed (connector CN18)
+User Interface:         none
+
+Detailed description is available on:
+http://www.keil.com/pack/doc/MW/USB/html/host_msc_tutorial.html
+
+The program is available in different targets:
+
+ - Debug:
+   - Compiler:                  ARM Compiler optimization Level 1
+   - Compiler:Event Recorder:   Enabled
+   - CMSIS:RTOS2:Keil RTX5:     Source
+   - USB:CORE:                  Debug
+   - File System:CORE:          LFN Debug
+
+ - Release:
+   - Compiler:                  ARM Compiler optimization Level 3
+   - Compiler:Event Recorder:   Disabled
+   - CMSIS:RTOS2:Keil RTX5:     Library
+   - USB:CORE:                  Release
+   - File System:CORE:          LFN

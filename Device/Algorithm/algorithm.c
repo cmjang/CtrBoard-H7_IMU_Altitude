@@ -8,6 +8,7 @@ uint8_t send_buf[MAX_BUFFER_SIZE];
 uint16_t cnt = 0;
 extern float roll,pitch,yaw;
 extern float temp;
+extern float roll_mahony, pitch_mahony, yaw_mahony;
 /**
 ***********************************************************************
 * @brief:      vofa_start(void)
@@ -82,7 +83,9 @@ void vofa_demo(void)
 	vofa_send_data(0, pitch);
 	vofa_send_data(1, roll);
 	vofa_send_data(2, yaw);
-	vofa_send_data(3, temp);
+	vofa_send_data(3, pitch_mahony);
+	vofa_send_data(4, roll_mahony);
+	vofa_send_data(5, yaw_mahony);
 	// Call the function to send the frame tail
 	vofa_sendframetail();
 }

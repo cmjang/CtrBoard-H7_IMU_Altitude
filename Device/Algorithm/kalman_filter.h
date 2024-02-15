@@ -30,7 +30,7 @@
 #include "stdlib.h"
 //#include "arm_math.h"
 #include "dsp/matrix_functions.h"
-
+#include "dsp/fast_math_functions.h"        
 #ifndef user_malloc
 #ifdef _CMSIS_OS_H
 #define user_malloc pvPortMalloc

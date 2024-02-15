@@ -1,0 +1,18 @@
+The 'DualCore' multi project demonstrates how to configure dual core application projects
+in order to use STM32H7 CM7 core together with STM32H7 M4 core.
+
+Example functionality:
+ - Clock Settings:
+   - HSE     =  25 MHz
+   - CM7     = 400 MHz  (SYSCLK)
+   - CM4     = 200 MHz  (HCLK)
+
+ - CM7 blinks LED1
+ - CM7 synchronizes CM4 start using  HW semaphore
+ - CM4 toggles LED2 .. LED4 upon request from CM7 (pushing Tamper button)
+
+Note:
+ - CM4 application is flashed together with CM7 application from CM7 project.
+ - used STM32H7 Option Bytes configuration:
+  - CM4 boot enabled
+  - CM7 boot enabled

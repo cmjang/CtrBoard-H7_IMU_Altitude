@@ -1,0 +1,73 @@
+CMSIS-Driver_Validation v3.0.0 CMSIS-Driver SPI Test Report   Mar 17 2023   11:12:02 
+
+Test Mode:          SPI Server
+Default settings:
+ - Slave Select:    Hardware controlled
+ - Format:          Clock Polarity 0, Clock Phase 0
+ - Data bits:       8
+ - Bit order:       MSB to LSB
+ - Bus speed:       1000000 bps
+ - Number of Items: 512
+
+TEST 01: SPI_GetVersion                   
+  DV_SPI.c (1344): [INFO] Driver API version 2.3, Driver version 1.6
+                                          PASSED
+TEST 02: SPI_GetCapabilities              PASSED
+TEST 03: SPI_Initialize_Uninitialize      PASSED
+TEST 04: SPI_PowerControl                 
+  DV_SPI.c (1635): [WARNING] PowerControl (ARM_POWER_LOW) is not supported
+                                          PASSED
+TEST 05: SPI_Mode_Master_SS_Unused        PASSED
+TEST 06: SPI_Mode_Master_SS_Sw_Ctrl       PASSED
+TEST 07: SPI_Mode_Master_SS_Hw_Ctrl_Out   PASSED
+TEST 08: SPI_Mode_Master_SS_Hw_Mon_In     PASSED
+TEST 09: SPI_Mode_Slave_SS_Hw_Mon         PASSED
+TEST 10: SPI_Mode_Slave_SS_Sw_Ctrl        PASSED
+TEST 11: SPI_Format_Clock_Pol0_Pha0       PASSED
+TEST 12: SPI_Format_Clock_Pol0_Pha1       PASSED
+TEST 13: SPI_Format_Clock_Pol1_Pha0       PASSED
+TEST 14: SPI_Format_Clock_Pol1_Pha1       PASSED
+TEST 15: SPI_Format_Frame_TI              PASSED
+TEST 16: SPI_Format_Clock_Microwire       NOT EXECUTED
+TEST 17: SPI_Data_Bits_1                  NOT EXECUTED
+TEST 18: SPI_Data_Bits_2                  NOT EXECUTED
+TEST 19: SPI_Data_Bits_3                  NOT EXECUTED
+TEST 20: SPI_Data_Bits_4                  NOT EXECUTED
+TEST 21: SPI_Data_Bits_5                  NOT EXECUTED
+TEST 22: SPI_Data_Bits_6                  NOT EXECUTED
+TEST 23: SPI_Data_Bits_7                  NOT EXECUTED
+TEST 24: SPI_Data_Bits_8                  PASSED
+TEST 25: SPI_Data_Bits_9                  NOT EXECUTED
+TEST 26: SPI_Data_Bits_10                 NOT EXECUTED
+TEST 27: SPI_Data_Bits_11                 NOT EXECUTED
+TEST 28: SPI_Data_Bits_12                 NOT EXECUTED
+TEST 29: SPI_Data_Bits_13                 NOT EXECUTED
+TEST 30: SPI_Data_Bits_14                 NOT EXECUTED
+TEST 31: SPI_Data_Bits_15                 NOT EXECUTED
+TEST 32: SPI_Data_Bits_16                 PASSED
+TEST 33: SPI_Data_Bits_17                 NOT EXECUTED
+TEST 34: SPI_Data_Bits_18                 NOT EXECUTED
+TEST 35: SPI_Data_Bits_19                 NOT EXECUTED
+TEST 36: SPI_Data_Bits_20                 NOT EXECUTED
+TEST 37: SPI_Data_Bits_21                 NOT EXECUTED
+TEST 38: SPI_Data_Bits_22                 NOT EXECUTED
+TEST 39: SPI_Data_Bits_23                 NOT EXECUTED
+TEST 40: SPI_Data_Bits_24                 NOT EXECUTED
+TEST 41: SPI_Data_Bits_25                 NOT EXECUTED
+TEST 42: SPI_Data_Bits_26                 NOT EXECUTED
+TEST 43: SPI_Data_Bits_27                 NOT EXECUTED
+TEST 44: SPI_Data_Bits_28                 NOT EXECUTED
+TEST 45: SPI_Data_Bits_29                 NOT EXECUTED
+TEST 46: SPI_Data_Bits_30                 NOT EXECUTED
+TEST 47: SPI_Data_Bits_31                 NOT EXECUTED
+TEST 48: SPI_Data_Bits_32                 NOT EXECUTED
+TEST 49: SPI_Bit_Order_MSB_LSB            PASSED
+TEST 50: SPI_Bit_Order_LSB_MSB            PASSED
+TEST 51: SPI_Bus_Speed_Min                PASSED
+TEST 52: SPI_Bus_Speed_Max                PASSED
+TEST 53: SPI_Number_Of_Items              PASSED
+TEST 54: SPI_GetDataCount                 PASSED
+TEST 55: SPI_Abort                        PASSED
+
+Test Summary: 55 Tests, 24 Passed, 0 Failed.
+Test Result: PASSED

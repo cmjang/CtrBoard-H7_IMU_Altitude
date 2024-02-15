@@ -1,0 +1,12 @@
+This is a simple example which shows how to setup emWin Graphic Library
+for the ST 'STM32H743IG-EVAL' Kit.
+
+The emWin Example is available in different targets:
+
+ - Debug:
+   - Compiler:                  ARM Compiler optimization Level 1
+   - CMSIS:RTOS2:Keil RTX5:     Source
+
+ - Release:
+   - Compiler:                  ARM Compiler optimization Level 3
+   - CMSIS:RTOS2:Keil RTX5:     Library

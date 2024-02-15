@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<system_description version="2.0">
+    <platform>
+        <scanchain>
+            <dap name="ARMCS-DP" type="ARMCS-DP">
+                <device_info_items>
+                    <device_info_item name="EXCLUDE_FROM_DTSL">False</device_info_item>
+                </device_info_items>
+                <device name="CSMEMAP_0" type="CSMEMAP">
+                    <config_items>
+                        <config_item name="CORESIGHT_AP_INDEX">0</config_item>
+                    </config_items>
+                    <device_info_items>
+                        <device_info_item name="EXCLUDE_FROM_DTSL">False</device_info_item>
+                        <device_info_item name="AP_TYPE">AHB-AP-M</device_info_item>
+                        <device_info_item name="ROM_TABLE_BASE_ADDRESS">0xE00FE000</device_info_item>
+                        <device_info_item name="AP_VERSION">APv1</device_info_item>
+                    </device_info_items>
+                </device>
+                <device name="Cortex-M7" type="Cortex-M7">
+                    <config_items>
+                        <config_item name="CORESIGHT_AP_INDEX">0</config_item>
+                        <config_item name="CORESIGHT_BASE_ADDRESS">0xE000ED00</config_item>
+                    </config_items>
+                    <device_info_items>
+                        <device_info_item name="EXCLUDE_FROM_DTSL">False</device_info_item>
+                        <device_info_item name="PERIPHERAL_ID">0x00000477</device_info_item>
+                        <device_info_item name="JEP_ID">0x0000043B</device_info_item>
+                    </device_info_items>
+                </device>
+                <device name="DWT_M7" type="CSDWT">
+                    <config_items>
+                        <config_item name="CORESIGHT_BASE_ADDRESS">0xE0001000</config_item>
+                        <config_item name="CORESIGHT_AP_INDEX">0</config_item>
+                    </config_items>
+                    <device_info_items>
+                        <device_info_item name="EXCLUDE_FROM_DTSL">False</device_info_item>
+                        <device_info_item name="PERIPHERAL_ID">0x00000002</device_info_item>
+                        <device_info_item name="JEP_ID">0x0000043B</device_info_item>
+                    </device_info_items>
+                </device>
+                <device name="FPB_M7" type="CSFPB">
+                    <config_items>
+                        <config_item name="CORESIGHT_BASE_ADDRESS">0xE0002000</config_item>
+                        <config_item name="CORESIGHT_AP_INDEX">0</config_item>
+                    </config_items>
+                    <device_info_items>
+                        <device_info_item name="EXCLUDE_FROM_DTSL">False</device_info_item>
+                        <device_info_item name="PERIPHERAL_ID">0x0000000E</device_info_item>
+                        <device_info_item name="JEP_ID">0x0000043B</device_info_item>
+                    </device_info_items>
+                </device>
+                <device name="ITM_M7" type="CSITM">
+                    <config_items>
+                        <config_item name="CORESIGHT_BASE_ADDRESS">0xE0000000</config_item>
+                        <config_item name="CORESIGHT_AP_INDEX">0</config_item>
+                    </config_items>
+                    <device_info_items>
+                        <device_info_item name="EXCLUDE_FROM_DTSL">False</device_info_item>
+                        <device_info_item name="PERIPHERAL_ID">0x00000001</device_info_item>
+                        <device_info_item name="JEP_ID">0x0000043B</device_info_item>
+                    </device_info_items>
+                </device>
+                <device name="ETM_M7" type="CSETM">
+                    <config_items>
+                        <config_item name="CORESIGHT_BASE_ADDRESS">0xE0041000</config_item>
+                        <config_item name="CORESIGHT_AP_INDEX">0</config_item>
+                    </config_items>
+                    <device_info_items>
+                        <device_info_item name="EXCLUDE_FROM_DTSL">False</device_info_item>
+                        <device_info_item name="VERSION">4.0</device_info_item>
+                        <device_info_item name="SUPPORTS_CONTEXT_IDS">False</device_info_item>
+                        <device_info_item name="SUPPORTS_VIRTUAL_CONTEXT_IDS">False</device_info_item>
+                        <device_info_item name="SUPPORTS_CYCLE_ACCURATE">True</device_info_item>
+                        <device_info_item name="SUPPORTS_DATA_VALUE_TRACE">False</device_info_item>
+                        <device_info_item name="SUPPORTS_DATA_ADDRESS_TRACE">False</device_info_item>
+                        <device_info_item name="SUPPORTS_DATA_ONLY_MODE">False</device_info_item>
+                        <device_info_item name="SUPPORTS_TIMESTAMPS">True</device_info_item>
+                        <device_info_item name="SUPPORTS_TRACE_RANGES">False</device_info_item>
+                        <device_info_item name="SUPPORTS_BRANCH_BROADCAST">False</device_info_item>
+                        <device_info_item name="SUPPORTS_CONDITIONAL_INSTRUCTIONS">False</device_info_item>
+                        <device_info_item name="SUPPORTS_Q_ELEMENTS">False</device_info_item>
+                        <device_info_item name="PERIPHERAL_ID">0x00000975</device_info_item>
+                        <device_info_item name="JEP_ID">0x0000043B</device_info_item>
+                    </device_info_items>
+                </device>
+                <device name="CTI_M7" type="CSCTI">
+                    <config_items>
+                        <config_item name="CORESIGHT_BASE_ADDRESS">0xE0043000</config_item>
+                        <config_item name="CORESIGHT_AP_INDEX">0</config_item>
+                    </config_items>
+                    <device_info_items>
+                        <device_info_item name="EXCLUDE_FROM_DTSL">False</device_info_item>
+                        <device_info_item name="PERIPHERAL_ID">0x00000906</device_info_item>
+                        <device_info_item name="JEP_ID">0x0000043B</device_info_item>
+                    </device_info_items>
+                </device>
+                <device name="CSMEMAP_1" type="CSMEMAP">
+                    <config_items>
+                        <config_item name="CORESIGHT_AP_INDEX">1</config_item>
+                    </config_items>
+                    <device_info_items>
+                        <device_info_item name="EXCLUDE_FROM_DTSL">False</device_info_item>
+                        <device_info_item name="AP_TYPE">AHB-AP</device_info_item>
+                        <device_info_item name="ROM_TABLE_BASE_ADDRESS"/>
+                        <device_info_item name="AP_VERSION">APv1</device_info_item>
+                    </device_info_items>
+                </device>
+                <device name="CSMEMAP_2" type="CSMEMAP">
+                    <config_items>
+                        <config_item name="CORESIGHT_AP_INDEX">2</config_item>
+                    </config_items>
+                    <device_info_items>
+                        <device_info_item name="EXCLUDE_FROM_DTSL">False</device_info_item>
+                        <device_info_item name="AP_TYPE">APB-AP</device_info_item>
+                        <device_info_item name="ROM_TABLE_BASE_ADDRESS">0xE00E0000</device_info_item>
+                        <device_info_item name="AP_VERSION">APv1</device_info_item>
+                    </device_info_items>
+                </device>
+                <device name="SWO" type="CSSWO">
+                    <config_items>
+                        <config_item name="CORESIGHT_BASE_ADDRESS">0xE00E3000</config_item>
+                        <config_item name="CORESIGHT_AP_INDEX">2</config_item>
+                    </config_items>
+                    <device_info_items>
+                        <device_info_item name="EXCLUDE_FROM_DTSL">False</device_info_item>
+                        <device_info_item name="PERIPHERAL_ID">0x00000914</device_info_item>
+                        <device_info_item name="JEP_ID">0x0000043B</device_info_item>
+                    </device_info_items>
+                </device>
+                <device name="SWTF" type="CSTFunnel">
+                    <config_items>
+                        <config_item name="CORESIGHT_BASE_ADDRESS">0xE00E4000</config_item>
+                        <config_item name="CORESIGHT_AP_INDEX">2</config_item>
+                    </config_items>
+                    <device_info_items>
+                        <device_info_item name="EXCLUDE_FROM_DTSL">False</device_info_item>
+                        <device_info_item name="PORT_COUNT">2</device_info_item>
+                        <device_info_item name="PERIPHERAL_ID">0x00000908</device_info_item>
+                        <device_info_item name="JEP_ID">0x0000043B</device_info_item>
+                    </device_info_items>
+                </device>
+                <device name="Timestamp Generator" type="Timestamp Generator">
+                    <config_items>
+                        <config_item name="CORESIGHT_BASE_ADDRESS">0xE00E5000</config_item>
+                        <config_item name="CORESIGHT_AP_INDEX">2</config_item>
+                    </config_items>
+                    <device_info_items>
+                        <device_info_item name="EXCLUDE_FROM_DTSL">False</device_info_item>
+                        <device_info_item name="PERIPHERAL_ID">0x00000101</device_info_item>
+                        <device_info_item name="JEP_ID">0x0000043B</device_info_item>
+                    </device_info_items>
+                </device>
+                <device name="CTI" type="CSCTI">
+                    <config_items>
+                        <config_item name="CORESIGHT_BASE_ADDRESS">0xE00F1000</config_item>
+                        <config_item name="CORESIGHT_AP_INDEX">2</config_item>
+                    </config_items>
+                    <device_info_items>
+                        <device_info_item name="EXCLUDE_FROM_DTSL">False</device_info_item>
+                        <device_info_item name="PERIPHERAL_ID">0x00000906</device_info_item>
+                        <device_info_item name="JEP_ID">0x0000043B</device_info_item>
+                    </device_info_items>
+                </device>
+                <device name="CSTF" type="CSTFunnel">
+                    <config_items>
+                        <config_item name="CORESIGHT_BASE_ADDRESS">0xE00F3000</config_item>
+                        <config_item name="CORESIGHT_AP_INDEX">2</config_item>
+                    </config_items>
+                    <device_info_items>
+                        <device_info_item name="EXCLUDE_FROM_DTSL">False</device_info_item>
+                        <device_info_item name="PORT_COUNT">4</device_info_item>
+                        <device_info_item name="PERIPHERAL_ID">0x00000908</device_info_item>
+                        <device_info_item name="JEP_ID">0x0000043B</device_info_item>
+                    </device_info_items>
+                </device>
+                <device name="ETF" type="CSTMC">
+                    <config_items>
+                        <config_item name="CORESIGHT_BASE_ADDRESS">0xE00F4000</config_item>
+                        <config_item name="CORESIGHT_AP_INDEX">2</config_item>
+                    </config_items>
+                    <device_info_items>
+                        <device_info_item name="EXCLUDE_FROM_DTSL">False</device_info_item>
+                        <device_info_item name="CONFIG_TYPE">ETF</device_info_item>
+                        <device_info_item name="MEM_WIDTH">64</device_info_item>
+                        <device_info_item name="RAM_SIZE_BYTES">4096</device_info_item>
+                        <device_info_item name="PERIPHERAL_ID">0x00000961</device_info_item>
+                        <device_info_item name="JEP_ID">0x0000043B</device_info_item>
+                        <device_info_item name="TMC_DEVICE_TYPE">TRACE_LINK</device_info_item>
+                        <device_info_item name="DRAIN_SOURCE">ATB</device_info_item>
+                    </device_info_items>
+                </device>
+                <device name="TPIU" type="CSTPIU">
+                    <config_items>
+                        <config_item name="CORESIGHT_BASE_ADDRESS">0xE00F5000</config_item>
+                        <config_item name="CORESIGHT_AP_INDEX">2</config_item>
+                    </config_items>
+                    <device_info_items>
+                        <device_info_item name="EXCLUDE_FROM_DTSL">False</device_info_item>
+                        <device_info_item name="FORMATTER_MODE">CONTINUOUS</device_info_item>
+                        <device_info_item name="SUPPORTED_PORT_SIZES">1,2,3,4,5,6,7,8</device_info_item>
+                        <device_info_item name="ARCHITECTURE">CoreSight</device_info_item>
+                        <device_info_item name="PERIPHERAL_ID">0x00000912</device_info_item>
+                        <device_info_item name="JEP_ID">0x0000043B</device_info_item>
+                    </device_info_items>
+                </device>
+                <device name="CSMEMAP_3" type="CSMEMAP">
+                    <config_items>
+                        <config_item name="CORESIGHT_AP_INDEX">3</config_item>
+                    </config_items>
+                    <device_info_items>
+                        <device_info_item name="EXCLUDE_FROM_DTSL">False</device_info_item>
+                        <device_info_item name="AP_TYPE">AHB-AP-M</device_info_item>
+                        <device_info_item name="ROM_TABLE_BASE_ADDRESS">0xE00FF000</device_info_item>
+                        <device_info_item name="AP_VERSION">APv1</device_info_item>
+                    </device_info_items>
+                </device>
+                <device name="Cortex-M4" type="Cortex-M4">
+                    <config_items>
+                        <config_item name="CORESIGHT_AP_INDEX">3</config_item>
+                        <config_item name="CORESIGHT_BASE_ADDRESS">0xE000ED00</config_item>
+                    </config_items>
+                    <device_info_items>
+                        <device_info_item name="EXCLUDE_FROM_DTSL">False</device_info_item>
+                        <device_info_item name="PERIPHERAL_ID">0x00000474</device_info_item>
+                        <device_info_item name="JEP_ID">0x0000043B</device_info_item>
+                    </device_info_items>
+                </device>
+                <device name="DWT_M4" type="CSDWT">
+                    <config_items>
+                        <config_item name="CORESIGHT_BASE_ADDRESS">0xE0001000</config_item>
+                        <config_item name="CORESIGHT_AP_INDEX">3</config_item>
+                    </config_items>
+                    <device_info_items>
+                        <device_info_item name="EXCLUDE_FROM_DTSL">False</device_info_item>
+                        <device_info_item name="PERIPHERAL_ID">0x00000002</device_info_item>
+                        <device_info_item name="JEP_ID">0x0000043B</device_info_item>
+                    </device_info_items>
+                </device>
+                <device name="FPB_M4" type="CSFPB">
+                    <config_items>
+                        <config_item name="CORESIGHT_BASE_ADDRESS">0xE0002000</config_item>
+                        <config_item name="CORESIGHT_AP_INDEX">3</config_item>
+                    </config_items>
+                    <device_info_items>
+                        <device_info_item name="EXCLUDE_FROM_DTSL">False</device_info_item>
+                        <device_info_item name="PERIPHERAL_ID">0x00000003</device_info_item>
+                        <device_info_item name="JEP_ID">0x0000043B</device_info_item>
+                    </device_info_items>
+                </device>
+                <device name="ITM_M4" type="CSITM">
+                    <config_items>
+                        <config_item name="CORESIGHT_BASE_ADDRESS">0xE0000000</config_item>
+                        <config_item name="CORESIGHT_AP_INDEX">3</config_item>
+                    </config_items>
+                    <device_info_items>
+                        <device_info_item name="EXCLUDE_FROM_DTSL">False</device_info_item>
+                        <device_info_item name="PERIPHERAL_ID">0x00000001</device_info_item>
+                        <device_info_item name="JEP_ID">0x0000043B</device_info_item>
+                    </device_info_items>
+                </device>
+                <device name="ETM_M4" type="CSETM">
+                    <config_items>
+                        <config_item name="CORESIGHT_BASE_ADDRESS">0xE0041000</config_item>
+                        <config_item name="CORESIGHT_AP_INDEX">3</config_item>
+                    </config_items>
+                    <device_info_items>
+                        <device_info_item name="EXCLUDE_FROM_DTSL">False</device_info_item>
+                        <device_info_item name="VERSION">3.5</device_info_item>
+                        <device_info_item name="SUPPORTS_CONTEXT_IDS">False</device_info_item>
+                        <device_info_item name="SUPPORTS_VIRTUAL_CONTEXT_IDS">False</device_info_item>
+                        <device_info_item name="SUPPORTS_CYCLE_ACCURATE">False</device_info_item>
+                        <device_info_item name="SUPPORTS_DATA_VALUE_TRACE">False</device_info_item>
+                        <device_info_item name="SUPPORTS_DATA_ADDRESS_TRACE">False</device_info_item>
+                        <device_info_item name="SUPPORTS_DATA_ONLY_MODE">False</device_info_item>
+                        <device_info_item name="SUPPORTS_TIMESTAMPS">True</device_info_item>
+                        <device_info_item name="SUPPORTS_TRACE_RANGES">False</device_info_item>
+                        <device_info_item name="SUPPORTS_BRANCH_BROADCAST">False</device_info_item>
+                        <device_info_item name="SUPPORTS_CONDITIONAL_INSTRUCTIONS">False</device_info_item>
+                        <device_info_item name="SUPPORTS_Q_ELEMENTS">False</device_info_item>
+                        <device_info_item name="PERIPHERAL_ID">0x00000925</device_info_item>
+                        <device_info_item name="JEP_ID">0x0000043B</device_info_item>
+                    </device_info_items>
+                </device>
+                <device name="CTI_M4" type="CSCTI">
+                    <config_items>
+                        <config_item name="CORESIGHT_BASE_ADDRESS">0xE0043000</config_item>
+                        <config_item name="CORESIGHT_AP_INDEX">3</config_item>
+                    </config_items>
+                    <device_info_items>
+                        <device_info_item name="EXCLUDE_FROM_DTSL">False</device_info_item>
+                        <device_info_item name="PERIPHERAL_ID">0x00000906</device_info_item>
+                        <device_info_item name="JEP_ID">0x0000043B</device_info_item>
+                    </device_info_items>
+                </device>
+            </dap>
+        </scanchain>
+        <topology>
+            <topology_link master="Cortex-M7" slave="ETM_M7" type="CoreTrace"/>
+            <topology_link master="Cortex-M7" slave="ITM_M7" type="CoreTrace"/>
+            <topology_link master="Cortex-M7" slave="DWT_M7" type="CoreTrace"/>
+            <topology_link master="Cortex-M4" slave="ETM_M4" type="CoreTrace"/>
+            <topology_link master="Cortex-M4" slave="ITM_M4" type="CoreTrace"/>
+            <topology_link master="Cortex-M4" slave="DWT_M4" type="CoreTrace"/>
+            <topology_link master="Cortex-M4" slave="CTI_M4" trigger="7" type="CTITrigger"/>
+            <topology_link master="ETM_M7" slave="CSTF" slave_interface="0" type="ATB"/>
+            <topology_link master="ETM_M4" slave="CSTF" slave_interface="2" type="ATB"/>
+            <topology_link master="ETM_M4" slave="CTI_M4" trigger="6" type="CTITrigger"/>
+            <topology_link master="ITM_M7" slave="SWTF" slave_interface="0" type="ATB"/>
+            <topology_link master="ITM_M7" slave="CSTF" slave_interface="1" type="ATB"/>
+            <topology_link master="ITM_M4" slave="CSTF" slave_interface="3" type="ATB"/>
+            <topology_link master="ITM_M4" slave="SWTF" slave_interface="1" type="ATB"/>
+            <topology_link master="CSTF" slave="ETF" type="ATB"/>
+            <topology_link master="SWTF" slave="SWO" type="ATB"/>
+            <topology_link master="ETF" slave="TPIU" type="ATB"/>
+            <topology_link master="CTI" slave="ETF" trigger="1" type="CTITrigger"/>
+            <topology_link master="CTI" slave="TPIU" trigger="3" type="CTITrigger"/>
+        </topology>
+    </platform>
+</system_description>

@@ -1,0 +1,33 @@
+This is an CAN FD example that sends and receives 64 byte data messages.
+Loopback mode is selected by default so it does not need physical loopback
+for demonstration. It sends messages to itself internally and to the CAN bus
+so transmitted messages can be captured on the CAN bus also.
+
+Board:                  ST         'STM32H743I-EVAL'
+Microcontroller:        ST         'STM32H743'
+Clock Settings:         XTAL     =   25 MHz
+                        CPUCLK   =  400 MHz
+                        CAN CLK  =   20 MHz
+CAN Interface:          FDCAN1 (connector CN3)
+                        nominal bit rate 125 kbit/s
+                        data    bit rate   1 Mbit/s
+User Interface:         input:  none
+                        output: SWO
+
+The program is available in different targets:
+
+ - Debug:
+   - Compiler:                  ARM Compiler optimization Level 1
+   - Compiler:Event Recorder:   Enabled
+   - CMSIS:RTOS2:Keil RTX5:     Source
+
+ - Release:
+   - Compiler:                  ARM Compiler optimization Level 3
+   - Compiler:Event Recorder:   Disabled
+   - CMSIS:RTOS2:Keil RTX5:     Library
+
+Jumper settings:
+  - JP2:  must be shorted to enable FDCAN TX (PA12) signal to transceiver
+  - SB50: must be shorted to enable FDCAN RX (PA11) signal from transceiver
+          (USB_FS1_DM is shared with FDCAN RX so can not be used at the same time)
+  - JP1:  can  be shorted to enable terminating resistor

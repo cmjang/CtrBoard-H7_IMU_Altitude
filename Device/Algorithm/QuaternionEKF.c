@@ -14,6 +14,9 @@
  ******************************************************************************
  */
 #include "QuaternionEKF.h"
+#include "dsp/fast_math_functions.h"
+#include "arm_common_tables.h"
+
 QEKF_INS_t QEKF_INS={0};
 
 const float IMU_QuaternionEKF_F[36] = {1, 0, 0, 0, 0, 0,
@@ -224,10 +227,13 @@ void IMU_QuaternionEKF_Update(float gx, float gy, float gz, float ax, float ay, 
     QEKF_INS.q[1] = QEKF_INS.IMU_QuaternionEKF.FilteredValue[1];
     QEKF_INS.q[2] = QEKF_INS.IMU_QuaternionEKF.FilteredValue[2];
     QEKF_INS.q[3] = QEKF_INS.IMU_QuaternionEKF.FilteredValue[3];
-		QEKF_INS.Roll  =57.29578f * atan2(QEKF_INS.q[0]*QEKF_INS.q[1] + QEKF_INS.q[2]*QEKF_INS.q[3], 0.5f - QEKF_INS.q[1]*QEKF_INS.q[1] - QEKF_INS.q[2]*QEKF_INS.q[2]);  //?????????  ??????????? ,????????atan??
-		QEKF_INS.Pitch =57.29578f * asinf(-2.0f * (QEKF_INS.q[1]*QEKF_INS.q[3] - QEKF_INS.q[0]*QEKF_INS.q[2]));
-		QEKF_INS.Yaw   =57.29578f * atan2(QEKF_INS.q[1]*QEKF_INS.q[2] + QEKF_INS.q[0]*QEKF_INS.q[3], 0.5f - QEKF_INS.q[2]*QEKF_INS.q[2] - QEKF_INS.q[3]*QEKF_INS.q[3]); //???????
-    QEKF_INS.GyroBias[0] = QEKF_INS.IMU_QuaternionEKF.FilteredValue[4];
+		
+		arm_atan2_f32(QEKF_INS.q[0]*QEKF_INS.q[1] + QEKF_INS.q[2]*QEKF_INS.q[3], 0.5f - QEKF_INS.q[1]*QEKF_INS.q[1] - QEKF_INS.q[2]*QEKF_INS.q[2],&QEKF_INS.Roll);
+		QEKF_INS.Roll  *=57.29578f; 
+		QEKF_INS.Pitch =57.29578f * arm_sin_f32(-2.0f * (QEKF_INS.q[1]*QEKF_INS.q[3] - QEKF_INS.q[0]*QEKF_INS.q[2]));
+		arm_atan2_f32(QEKF_INS.q[1]*QEKF_INS.q[2] + QEKF_INS.q[0]*QEKF_INS.q[3], 0.5f - QEKF_INS.q[2]*QEKF_INS.q[2] - QEKF_INS.q[3]*QEKF_INS.q[3],&QEKF_INS.Yaw); 
+    QEKF_INS.Yaw   *=57.29578f; 
+		QEKF_INS.GyroBias[0] = QEKF_INS.IMU_QuaternionEKF.FilteredValue[4];
     QEKF_INS.GyroBias[1] = QEKF_INS.IMU_QuaternionEKF.FilteredValue[5];
     QEKF_INS.GyroBias[2] = 0; // 大部分时候z轴通天,无法观测yaw的漂移
 		// get Yaw total, yaw数据可能会超过360,处理一下方便其他功能使用(如小陀螺)
@@ -377,7 +383,7 @@ static void IMU_QuaternionEKF_xhatUpdate(KalmanFilter_t *kf)
     // 计算预测值和各个轴的方向余弦
     for (uint8_t i = 0; i < 3; i++)
     {
-        QEKF_INS.OrientationCosine[i] = acosf(fabsf(kf->temp_vector_data[i]));
+        QEKF_INS.OrientationCosine[i] = arm_cos_f32(fabsf(kf->temp_vector_data[i]));
     }
 
     // 利用加速度计数据修正

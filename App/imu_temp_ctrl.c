@@ -8,11 +8,11 @@
 #include "QuaternionEKF.h"
 #include "imu_temp_ctrl.h"
 #include "controller.h"
-
+#include "MahonyAHRS.h"
 #define cheat TRUE  //作弊模式 去掉较小的gyro值
 #define correct_Time_define 1000    //上电去0飘 1000次取平均
 #define temp_times 300       //探测温度阈值
-PID_t Temperature_PID={0};
+volatile PID_t Temperature_PID={0};
 float gyro[3], accel[3], temp;
 float gyro_correct[3]={0};
 float RefTemp = 40;   //Destination
@@ -26,6 +26,7 @@ void INS_Init(void)
 	
     IMU_QuaternionEKF_Init(10, 0.001, 10000000, 1, 0.001f,0); //ekf初始化
 		PID_Init(&Temperature_PID, 2000, 220, 0, 1100, 50, 10, 0, 0, 0, 0, 0, 1); //limit
+		Mahony_Init(1000);
     // imu heat init
     HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_4);
     while(BMI088_init());
@@ -48,6 +49,7 @@ void IMU_Temperature_Ctrl(){
  * @details: IMU姿态控制任务函数
  
 */
+static uint8_t first_mahony=0; 
 void INS_Task(void)
 {
     static uint32_t count = 0;
@@ -56,6 +58,11 @@ void INS_Task(void)
     if ((count % 1) == 0)
     {
         BMI088_read(gyro, accel, &temp);
+				if(first_mahony==0)
+				{
+					first_mahony++;
+					//MahonyAHRSinit(accel[0],accel[1],accel[2],0,0,0);  
+				}
 				if(attitude_flag==2)  //ekf的姿态解算
 				{
 					gyro[0]-=gyro_correct[0];   //减去陀螺仪0飘
@@ -66,7 +73,13 @@ void INS_Task(void)
 						if(fabsf(gyro[2])<0.003f)
 							gyro[2]=0;
 					#endif
-					IMU_QuaternionEKF_Update(gyro[0],gyro[1],gyro[2],accel[0],accel[1],accel[2]); 
+					//HAL_GPIO_WritePin(GPIOE,GPIO_PIN_13,GPIO_PIN_SET);
+					IMU_QuaternionEKF_Update(gyro[0],gyro[1],gyro[2],accel[0],accel[1],accel[2]);
+					//HAL_GPIO_WritePin(GPIOE,GPIO_PIN_13,GPIO_PIN_RESET);
+					HAL_GPIO_WritePin(GPIOE,GPIO_PIN_13,GPIO_PIN_SET);
+					Mahony_update(gyro[0],gyro[1],gyro[2],accel[0],accel[1],accel[2],0,0,0);
+					Mahony_computeAngles(); //角度计算
+					HAL_GPIO_WritePin(GPIOE,GPIO_PIN_13,GPIO_PIN_RESET);
 					pitch=Get_Pitch(); //获得pitch
 					roll=Get_Roll();//获得roll
 					yaw=Get_Yaw();//获得yaw
