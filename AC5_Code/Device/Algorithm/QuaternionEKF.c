@@ -42,10 +42,10 @@ float IMU_QuaternionEKF_K[18];
 float IMU_QuaternionEKF_H[18];
 
 static float invSqrt(float x);
-static void IMU_QuaternionEKF_Observe(KalmanFilter_t *kf);
-static void IMU_QuaternionEKF_F_Linearization_P_Fading(KalmanFilter_t *kf);
-static void IMU_QuaternionEKF_SetH(KalmanFilter_t *kf);
-static void IMU_QuaternionEKF_xhatUpdate(KalmanFilter_t *kf);
+static inline void IMU_QuaternionEKF_Observe(KalmanFilter_t *kf);
+static inline void IMU_QuaternionEKF_F_Linearization_P_Fading(KalmanFilter_t *kf);
+static inline void IMU_QuaternionEKF_SetH(KalmanFilter_t *kf);
+static inline void IMU_QuaternionEKF_xhatUpdate(KalmanFilter_t *kf);
 
 /**
  * @brief Quaternion EKF initialization and some reference value
@@ -67,11 +67,11 @@ void IMU_QuaternionEKF_Init(float process_noise1, float process_noise2, float me
     QEKF_INS.UpdateCount = 0;
 		QEKF_INS.dt = dt;
     
-	if (lambda > 1)
+		if (lambda > 1)
     {
         lambda = 1;
     }
-    QEKF_INS.lambda = lambda;
+    QEKF_INS.lambda = 1.f/lambda; //倒数
 		
     // 初始化矩阵维度信息
     Kalman_Filter_Init(&QEKF_INS.IMU_QuaternionEKF, 6, 0, 3);
@@ -176,9 +176,11 @@ void IMU_QuaternionEKF_Update(float gx, float gy, float gz, float ax, float ay, 
         QEKF_INS.Accel[2] = az;
         QEKF_INS.UpdateCount++;
     }
-    QEKF_INS.Accel[0] = QEKF_INS.Accel[0] * QEKF_INS.accLPFcoef / (QEKF_INS.dt + QEKF_INS.accLPFcoef) + ax * QEKF_INS.dt / (QEKF_INS.dt + QEKF_INS.accLPFcoef);
-    QEKF_INS.Accel[1] = QEKF_INS.Accel[1] * QEKF_INS.accLPFcoef / (QEKF_INS.dt + QEKF_INS.accLPFcoef) + ay * QEKF_INS.dt / (QEKF_INS.dt + QEKF_INS.accLPFcoef);
-    QEKF_INS.Accel[2] = QEKF_INS.Accel[2] * QEKF_INS.accLPFcoef / (QEKF_INS.dt + QEKF_INS.accLPFcoef) + az * QEKF_INS.dt / (QEKF_INS.dt + QEKF_INS.accLPFcoef);
+		static float temp_quick=0;
+		temp_quick= 1.f/(QEKF_INS.dt + QEKF_INS.accLPFcoef);//加速
+    QEKF_INS.Accel[0] = QEKF_INS.Accel[0] * QEKF_INS.accLPFcoef * temp_quick + ax * QEKF_INS.dt * temp_quick;
+    QEKF_INS.Accel[1] = QEKF_INS.Accel[1] * QEKF_INS.accLPFcoef * temp_quick + ay * QEKF_INS.dt * temp_quick;
+    QEKF_INS.Accel[2] = QEKF_INS.Accel[2] * QEKF_INS.accLPFcoef * temp_quick + az * QEKF_INS.dt * temp_quick;
 
     // set z,单位化重力加速度向量
     
@@ -191,9 +193,7 @@ void IMU_QuaternionEKF_Update(float gx, float gy, float gz, float ax, float ay, 
 	QEKF_INS.IMU_QuaternionEKF.MeasuredVector[2] = QEKF_INS.Accel[2] * accelInvNorm;
 
     // get body state
-    QEKF_INS.gyro_norm = __sqrtf(	QEKF_INS.Gyro[0] * QEKF_INS.Gyro[0] +
-                                    QEKF_INS.Gyro[1] * QEKF_INS.Gyro[1] +
-                                    QEKF_INS.Gyro[2] * QEKF_INS.Gyro[2]);
+    QEKF_INS.gyro_norm = __sqrtf(	QEKF_INS.Gyro[0] * QEKF_INS.Gyro[0] +QEKF_INS.Gyro[1] * QEKF_INS.Gyro[1] +QEKF_INS.Gyro[2] * QEKF_INS.Gyro[2]);
 
 
     // 如果角速度小于阈值且加速度处于设定范围内,认为运动稳定,加速度可以用于修正角速度
@@ -254,7 +254,7 @@ void IMU_QuaternionEKF_Update(float gx, float gy, float gz, float ax, float ay, 
  *
  * @param kf
  */
-static void IMU_QuaternionEKF_F_Linearization_P_Fading(KalmanFilter_t *kf)
+static inline void IMU_QuaternionEKF_F_Linearization_P_Fading(KalmanFilter_t *kf)
 {
     volatile float q0, q1, q2, q3;
     volatile float qInvNorm;
@@ -279,21 +279,21 @@ static void IMU_QuaternionEKF_F_Linearization_P_Fading(KalmanFilter_t *kf)
     30    31    32    33    34     35
     */
     // set F
-    kf->F_data[4] = q1 * QEKF_INS.dt / 2;
-    kf->F_data[5] = q2 * QEKF_INS.dt / 2;
+    kf->F_data[4] = (q1 * QEKF_INS.dt)*0.5f;
+    kf->F_data[5] = q2 * QEKF_INS.dt*0.5f;
 
-    kf->F_data[10] = -q0 * QEKF_INS.dt / 2;
-    kf->F_data[11] = q3 * QEKF_INS.dt / 2;
+    kf->F_data[10] = -q0 * QEKF_INS.dt*0.5f;
+    kf->F_data[11] = q3 * QEKF_INS.dt*0.5f;
 
-    kf->F_data[16] = -q3 * QEKF_INS.dt / 2;
-    kf->F_data[17] = -q0 * QEKF_INS.dt / 2;
+    kf->F_data[16] = -q3 * QEKF_INS.dt*0.5f;
+    kf->F_data[17] = -q0 * QEKF_INS.dt*0.5f;
 
-    kf->F_data[22] = q2 * QEKF_INS.dt / 2;
-    kf->F_data[23] = -q1 * QEKF_INS.dt / 2;
+    kf->F_data[22] = q2 * QEKF_INS.dt*0.5f;
+    kf->F_data[23] = -q1 * QEKF_INS.dt*0.5f;
 
     // fading filter,防止零飘参数过度收敛
-    kf->P_data[28] /= QEKF_INS.lambda;
-    kf->P_data[35] /= QEKF_INS.lambda;
+    kf->P_data[28] *= QEKF_INS.lambda;
+    kf->P_data[35] *= QEKF_INS.lambda;
 
     // 限幅,防止发散
     if (kf->P_data[28] > 10000)
@@ -311,7 +311,7 @@ static void IMU_QuaternionEKF_F_Linearization_P_Fading(KalmanFilter_t *kf)
  *
  * @param kf
  */
-static void IMU_QuaternionEKF_SetH(KalmanFilter_t *kf)
+static inline void IMU_QuaternionEKF_SetH(KalmanFilter_t *kf)
 {
     volatile float doubleq0, doubleq1, doubleq2, doubleq3;
     /* H
@@ -462,7 +462,7 @@ static void IMU_QuaternionEKF_xhatUpdate(KalmanFilter_t *kf)
     {
         for (uint8_t j = 0; j < 3; j++)
         {
-            kf->K_data[i * 3 + j] *= QEKF_INS.OrientationCosine[i - 4] / 1.5707963f; // 1 rad
+            kf->K_data[i * 3 + j] *= QEKF_INS.OrientationCosine[i - 4] *( 1/1.5707963f); // 1 rad
         }
     }
 

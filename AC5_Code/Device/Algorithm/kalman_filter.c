@@ -132,7 +132,7 @@
 
 uint16_t sizeof_float, sizeof_double;
 
-static void H_K_R_Adjustment(KalmanFilter_t *kf);
+static inline void H_K_R_Adjustment(KalmanFilter_t *kf);
 
 void* user_malloc(size_t size)
 {
@@ -292,7 +292,7 @@ void Kalman_Filter_Reset(KalmanFilter_t *kf, uint8_t xhatSize, uint8_t uSize, ui
 
     memset(kf->xhat_data, 0, sizeof_float * xhatSize);
 
-	memset(kf->xhatminus_data, 0, sizeof_float * xhatSize);
+		memset(kf->xhatminus_data, 0, sizeof_float * xhatSize);
 	
     if(uSize != 0)
     {memset(kf->u_data, 0, sizeof_float * uSize);}	
@@ -501,7 +501,7 @@ float *Kalman_Filter_Update(KalmanFilter_t *kf)
     return kf->FilteredValue;
 }
 
-static void H_K_R_Adjustment(KalmanFilter_t *kf)
+static inline void H_K_R_Adjustment(KalmanFilter_t *kf)
 {
     kf->MeasurementValidNum = 0;
 
